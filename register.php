@@ -14,8 +14,8 @@
         </div>
         <div class="right-side">
             <div class="error"></div>
-            <h1>Create an account</h1>
-            <div>It's free and always will be</div>
+            <h1 style="color: #212121;">Create an account</h1>
+            <div style="color: #212121; font-size:20px;">It's free and always will be</div>
             <form action="register.php" method="POST" name="user-sign-up">
                 <div class="sign-up-form">
                     <div class="sign-up-name">
