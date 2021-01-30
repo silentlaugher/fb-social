@@ -1,3 +1,7 @@
+<?php 
+    require 'connect/DB.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
