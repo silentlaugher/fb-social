@@ -1,5 +1,5 @@
 <?php 
-    require 'connect/DB.php';
+    require 'core/database/connection.php';
 
     if(isset($_POST['first-name']) && !empty($_POST['first-name'])){
         $upFirst = $_POST['first-name'];
@@ -18,8 +18,6 @@
         if(empty($upFirst) or empty($upLast) or empty($upEmail) or empty($upMobile) or empty($upgen)){
             $error = 'All feilds are required';
         }
-    }else{
-        echo 'User not found';
     }
 ?>
 
