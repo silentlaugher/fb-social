@@ -1,5 +1,5 @@
 <?php 
-    require 'core/database/connection.php';
+    require 'core/load.php';
 
     if(isset($_POST['first-name']) && !empty($_POST['first-name'])){
         $upFirst = $_POST['first-name'];
