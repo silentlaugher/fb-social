@@ -5,6 +5,7 @@
         $upFirst = $_POST['first-name'];
         $upLast = $_POST['last-name'];
         $upEmail = $_POST['email'];
+        $upUser = $_POST['username'];
         $upMobile = $_POST['mobile'];
         $upPassword = $_POST['password'];
         $birthDay = $_POST['birth-day'];
@@ -15,9 +16,25 @@
         }
         $birth = ''.$birthYear.'-'.$birthMonth.'-'.$birthDay.'';
 
-        if(empty($upFirst) or empty($upLast) or empty($upEmail) or empty($upMobile) or empty($upgen)){
+        if(empty($upFirst) or empty($upLast) or empty($upEmail) or empty($upUser) or empty($upMobile) or empty($upgen)){
             $error = 'All feilds are required';
+        }else{
+            $first_name = $loadFromUser->checkInput($upFirst);
+            $last_name = $loadFromUser->checkInput($upLast);
+            $email = $loadFromUser->checkInput($upEmail);
+            $username = $loadFromUser->checkInput($upuser);
+            $mobile = $loadFromUser->checkInput($upMobile);
+            $password = $loadFromUser->checkInput($upPassword);
+            $screenName = ''.$first_name.'_'.$last_name.'';
+            if (DB::query('SELECT screenName FROM users WHERE screenName = :screenName', array(':screenName' => $screenName ))) {
+                $screenRand = rand();
+                $userLink = ''.$screenName.''.$screenRand.'';
+            }else{
+                $userLink = $screenName;
+            }
         }
+    }else{
+        echo 'User not found';
     }
 ?>
 
