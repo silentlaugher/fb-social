@@ -1,5 +1,26 @@
 <?php 
     require 'connect/DB.php';
+
+    if(isset($_POST['first-name']) && !empty($_POST['first-name'])){
+        $upFirst = $_POST['first-name'];
+        $upLast = $_POST['last-name'];
+        $upEmail = $_POST['email'];
+        $upMobile = $_POST['mobile'];
+        $upPassword = $_POST['password'];
+        $birthDay = $_POST['birth-day'];
+        $birthMonth = $_POST['birth-month'];
+        $birthYear = $_POST['birth-year'];
+        if(!empty($_POST['gen'])){
+            $upgen = $_POST['gen'];
+        }
+        $birth = ''.$birthYear.'-'.$birthMonth.'-'.$birthDay.'';
+
+        if(empty($upFirst) or empty($upLast) or empty($upEmail) or empty($upMobile) or empty($upgen)){
+            $error = 'All feilds are required';
+        }
+    }else{
+        echo 'User not found';
+    }
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +38,9 @@
             <img src="assets/img/facebookSign.png" alt="">
         </div>
         <div class="right-side">
-            <div class="error"></div>
+            <div class="error">
+                <?php if(!empty($error)){echo $error;} ?>
+            </div>
             <h1 style="color: #212121;">Create an account</h1>
             <div style="color: #212121; font-size:20px;">It's free and always will be</div>
             <form action="register.php" method="POST" name="user-sign-up">
@@ -48,11 +71,11 @@
                         </div>
                     </div>
                     <div class="gender-wrap">
-                        <input type="radio" name="gen" id="male" value="male" class="m0">
+                        <input type="radio" name="gender" id="male" value="male" class="m0">
                         <label for="male" class="gender">Male</label>
-                        <input type="radio" name="gen" id="fem" value="female" class="m0">
+                        <input type="radio" name="gender" id="fem" value="female" class="m0">
                         <label for="fem" class="gender">Female</label>
-                        <input type="radio" name="gen" id="irns" value="irns" class="m0">
+                        <input type="radio" name="gender" id="irns" value="irns" class="m0">
                         <label for="irns" class="gender">I'd rather not say</label>
                     </div>
                     <div class="term">
