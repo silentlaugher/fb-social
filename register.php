@@ -32,6 +32,31 @@
             }else{
                 $userLink = $screenName;
             }
+            if(!preg_match("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9]+)*(\.[a-z]{2,3})$",$email)){
+                if(!preg_match("^[a-zA-Z0-9 ]+$",$username)){
+                    $error = 'Incorrect Email or Username. Please try a different one.';
+                }
+            }else{
+                if(!filter_var($email)){
+                    $error = "Invalid Email Format";
+                
+                }else if(strlen($first_name) > 24){
+                    $error = "First Name must be between 2-24 character";
+                }else if(strlen($last_name) > 24){
+                    $error = "Last Name must be between 2-24 character";
+                }else if(strlen($password) <8 && strlen($password) >= 60){
+                $error = "The password is either too short or too long";
+        }else{
+            if((filter_var($email,FILTER_VALIDATE_EMAIL)) && $loadFromUser->checkEmail($email) === true){
+                $error = "Email is already in use. Please try a differnt one";
+            }else if((filter_var($username,FILTER_VALIDATE_REGEXP)) && $loadFromUser->checkUsername($username) === true){
+                $error = "Username is already in use. Please try a different one.";
+            }else{
+                $loadFromUser->create();
+            }
+        }
+    }
+
         }
     }else{
         echo 'User not found';
