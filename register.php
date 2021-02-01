@@ -52,7 +52,7 @@
             }else if((filter_var($username,FILTER_VALIDATE_REGEXP)) && $loadFromUser->checkUsername($username) === true){
                 $error = "Username is already in use. Please try a different one.";
             }else{
-                $loadFromUser->create();
+                $loadFromUser->create('users', array('first_name' =>$first_name, 'last_name'=>$last_name, 'email'=>$email,'username'=>$username, 'mobile'=>$mobile,'password'=>password_hash($password, PASSWORD_BCRYPT),'screenName'=>$screenName,'userLink'=>$userLink, 'birthday'=>$birth, 'gender'=>$upgen));
             }
         }
     }
